@@ -3,7 +3,7 @@ import { addProduct } from '../../redux/home/action';
 import { useDispatch, useSelector } from 'react-redux';
 
 const AddProduct = () => {
-    const products = useSelector((state) => state.home);
+    const products = useSelector((state) => state.products);
 
     const nextProductId = (products) => {
         const maxId = products.reduce((maxId, product) => Math.max(product.id, maxId), -1);
