@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const Carts = () => {
     const carts = useSelector((state) => state.carts);
-    console.log(carts);
     return (
         <main className="py-16">
             <div className="container 2xl:px-8 px-2 mx-auto">

@@ -7,8 +7,6 @@ const Product = ({ product }) => {
     const { id, name, category, price, quantity, imageURL } = product;
     const carts = useSelector((state) => state.carts);
 
-    console.log(carts)
-
     const nextCartId = (carts) => {
         const maxId = carts.reduce((maxId, cart) => Math.max(cart.id, maxId), -1);
         return maxId + 1;

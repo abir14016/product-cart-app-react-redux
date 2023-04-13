@@ -31,7 +31,6 @@ const cartReducer = (state = initialState, action) => {
 
         case ADDPRODUCTTOCART:
             const { newProduct } = action.payload;
-            console.log(action.payload)
             const cartIndex = state.findIndex(cart => cart.key === newProduct.key);
             if (cartIndex === -1) {
                 // Product not found in the cart, add new product
@@ -54,36 +53,6 @@ const cartReducer = (state = initialState, action) => {
                     ...state.slice(cartIndex + 1)
                 ];
             }
-        // const { productId, newProduct } = action.payload;
-        // console.log(action.payload)
-        // if (state.length >= 1) {
-        //     return state.map(cart => {
-        //         if (cart.key !== newProduct.key) {
-        //             console.log('addedinner')
-        //             return [
-        //                 ...state,
-        //                 newProduct
-        //             ]
-        //         }
-        //         else {
-        //             console.log('edited');
-        //             return {
-        //                 ...cart,
-        //                 quantity: parseInt(cart.quantity) + 1
-        //             };
-        //         };
-        //     });
-        // } else {
-        //     return [
-        //         ...state,
-        //         newProduct
-        //     ]
-        // }
-
-        // return [
-        //     ...state,
-        //     newProduct
-        // ]
 
         case DELETED:
             return state.filter(cart => cart.id !== action.payload);
