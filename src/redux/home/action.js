@@ -1,4 +1,4 @@
-import { ADDPRODUCT, ADDTOCART } from "./actionTypes"
+import { ADDPRODUCT, ADDTOCART, REMOVEFROMCART } from "./actionTypes"
 
 //actiion creators for home slice
 export const addProduct = (newProduct) => {
@@ -8,9 +8,15 @@ export const addProduct = (newProduct) => {
     };
 };
 
-export const addToCart = (product) => {
+export const addToCart = (productId) => {
     return {
         type: ADDTOCART,
-        payload: product
+        payload: productId
+    };
+};
+export const removeFromCart = (productId) => {
+    return {
+        type: REMOVEFROMCART,
+        payload: productId
     };
 };

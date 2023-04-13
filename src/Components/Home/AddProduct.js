@@ -41,9 +41,9 @@ const AddProduct = () => {
     const newProduct = {
         id: nextProductId(products),
         name: name,
-        price: price,
+        price: parseInt(price),
         category: category,
-        quantity: quantity,
+        quantity: parseInt(quantity),
         imageURL: imageURL
     }
 

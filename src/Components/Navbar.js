@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import logoImage from '../../src/images/logo.png';
 import Home from './Home/Home';
 import Carts from './ShoppingCart/Carts';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+    const carts = useSelector((state) => state.carts);
+    const cartQuantity = carts.reduce((total, cart) => parseInt(total) + parseInt(cart.quantity), 0);
     const [showHome, setShowHome] = useState(true);
     const [showShoppingCart, setShowShoppingCart] = useState(false);
 
@@ -29,7 +32,7 @@ const Navbar = () => {
                         <button onClick={handleHome} className="navHome" id="lws-home"> Home </button>
                         <button onClick={handleShoppingCart} className="navCart" id="lws-cart">
                             <i className="text-xl fa-sharp fa-solid fa-bag-shopping"></i>
-                            <span id="lws-totalCart">0</span>
+                            <span id="lws-totalCart">{cartQuantity}</span>
                         </button>
                     </div>
                 </div>

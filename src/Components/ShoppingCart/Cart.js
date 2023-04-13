@@ -1,17 +1,25 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { decrement, deleted, increment } from '../../redux/shoppingCart/action';
+import { addToCart, removeFromCart } from '../../redux/home/action';
 
 const Cart = ({ cart }) => {
-    const { id, name, category, imageURL, price, quantity } = cart;
+    const { id, name, category, imageURL, price, quantity, key } = cart;
+
+    const numPrice = parseInt(price);
+    const numQuantity = parseInt(quantity);
+
     const dispatch = useDispatch();
 
     const handleIncrement = (productId) => {
-        dispatch(increment(productId))
+        dispatch(increment(productId));
+        dispatch(addToCart(key));
     }
 
     const handleDecrement = (productId) => {
         dispatch(decrement(productId))
+        dispatch(removeFromCart(key))
+
     }
 
     const handleDelete = (productId) => {
@@ -31,7 +39,7 @@ const Cart = ({ cart }) => {
                         {name}
                     </h4>
                     <p className="lws-cartCategory">{category}</p>
-                    <p>BDT <span className="lws-cartPrice">{price}</span></p>
+                    <p>BDT <span className="lws-cartPrice">{numPrice}</span></p>
                 </div>
             </div>
             <div
@@ -43,7 +51,7 @@ const Cart = ({ cart }) => {
                         className="lws-incrementQuantity">
                         <i className="text-lg fa-solid fa-plus"></i>
                     </button>
-                    <span className="lws-cartQuantity">{quantity}</span>
+                    <span className="lws-cartQuantity">{numQuantity}</span>
                     <button
                         onClick={() => handleDecrement(id)}
                         className="lws-decrementQuantity">
@@ -52,7 +60,7 @@ const Cart = ({ cart }) => {
                 </div>
 
                 <p className="text-lg font-bold">
-                    BDT <span className="lws-calculatedPrice">{price * quantity}</span>
+                    BDT <span className="lws-calculatedPrice">{numPrice * numQuantity}</span>
                 </p>
             </div>
             <div
