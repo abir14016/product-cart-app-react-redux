@@ -1,10 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { decrement, deleted, increment } from '../../redux/shoppingCart/action';
 import { addToCart, removeFromCart } from '../../redux/home/action';
 
 const Cart = ({ cart }) => {
+    const products = useSelector((state) => state.products);
+
     const { id, name, category, imageURL, price, quantity, key } = cart;
+
+    const product = products[key];
 
     const numPrice = parseInt(price);
     const numQuantity = parseInt(quantity);
@@ -47,12 +51,14 @@ const Cart = ({ cart }) => {
             >
                 <div className="flex items-center space-x-4">
                     <button
+                        disabled={product.quantity < 1}
                         onClick={() => handleIncrement(id)}
                         className="lws-incrementQuantity">
                         <i className="text-lg fa-solid fa-plus"></i>
                     </button>
                     <span className="lws-cartQuantity">{numQuantity}</span>
                     <button
+                        disabled={numQuantity <= 1}
                         onClick={() => handleDecrement(id)}
                         className="lws-decrementQuantity">
                         <i className="text-lg fa-solid fa-minus"></i>
